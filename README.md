@@ -3,7 +3,7 @@ Trabajo Práctico Integrador | Programación 1 | UTN 1C 2026
 
 # Integrantes del grupo:
 * **[Leila Magalí Bruno]** - Comisión: 14 
-* **[Lucia Victoria Ledesma]** - Comisión: 
+* **[Lucia Victoria Ledesma]** - Comisión: 5
 
 # Sistema de Gestión de Datos de Países en Python
 Este proyecto es el Trabajo Práctico Integrador para la materia Programación 1 de la Tecnicatura Universitaria en Programación a Distancia de la Universidad Tecnológica Nacional.
