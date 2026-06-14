@@ -2,7 +2,7 @@
 Trabajo Práctico Integrador | Programación 1 | UTN 1C 2026
 
 # Integrantes del grupo:
-**Leila Magalí Bruno** - Comisión: 14 
+**Leila Magalí Bruno** - Comisión: 14 |
 **Lucia Victoria Ledesma** - Comisión: 5 
 
 # Sistema de Gestión de Datos de Países en Python
@@ -29,6 +29,6 @@ El programa cuenta con un menú interactivo en consola que incluye:
 **Estadísticas avanzadas:** País con mayor/menor población, promedios globales y conteo por continente.
 
 # Video Demostración e Informe PDF
-**Enlace al Video Explicativo:** []
+**Enlace al Video Explicativo:** [] |
 **Documentación Académica:** []
 
