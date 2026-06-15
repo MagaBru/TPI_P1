@@ -30,5 +30,5 @@ El programa cuenta con un menú interactivo en consola que incluye:
 
 # Video Demostración e Informe PDF
 **Enlace al Video Explicativo:** [https://drive.google.com/drive/folders/1YQ-9wOPluPTvBhdS6Tw3STNu2WLVC2Bz] |
-**Documentación Académica:** []
+**Documentación Académica:** [https://drive.google.com/file/d/1WfbOvI1GTTTDl11I-VSAvbZFPI_vrKO5/view?usp=sharing]
 
