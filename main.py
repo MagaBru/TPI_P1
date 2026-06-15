@@ -206,29 +206,51 @@ def ordenar_paises(lista_paises): #Ordena la lista de paises por 3 criterios dif
         return
 
     print("--- MENÚ DE ORDENAMIENTO ---")
-    print("1. Ordenar por Nombre (A-Z)")
-    print("2. Ordenar por Población (Mayor a Menor)")
-    print("3. Ordenar por Superficie (Mayor a Menor)")
-    sub_opcion = input("Seleccione una opción de orden (1-3): ").strip()
+    print("1. Nombre")
+    print("2. Población")
+    print("3. Superficie")
 
-    match sub_opcion:
-        case "1": # Ordena alfabéticamente por 'nombre'
-            lista_paises.sort(key=lambda x: x["nombre"].lower())
-            print("¡Lista ordenada por Nombre de la A a la Z!")
-            mostrar_tabla_paises(lista_paises)
+    opcion = input("Seleccione criterio: ").strip()
 
-        case "2": # Ordena por población
-            lista_paises.sort(key=lambda x: x["poblacion"], reverse=True)
-            print("¡Lista ordenada por Población de Mayor a Menor!")
-            mostrar_tabla_paises(lista_paises)
+    '''
+    CAMBIO REALIZADO:
+El usuario elige el orden ascendente o descendente
+    '''
 
-        case "3": # Ordena por superficie
-            lista_paises.sort(key=lambda x: x["superficie"], reverse=True)
-            print("¡Lista ordenada por Superficie de Mayor a Menor!")
-            mostrar_tabla_paises(lista_paises)
+    sentido = input(
+        "Seleccione A (Ascendente) o D (Descendente): "
+    ).strip().upper()
+
+    reverse = sentido == "D"
+
+    match opcion:
+
+        case "1":
+
+            lista_paises.sort(
+                key=lambda x: x["nombre"].lower(),
+                reverse=reverse
+            )
+
+        case "2":
+
+            lista_paises.sort(
+                key=lambda x: x["poblacion"],
+                reverse=reverse
+            )
+
+        case "3":
+
+            lista_paises.sort(
+                key=lambda x: x["superficie"],
+                reverse=reverse
+            )
 
         case _:
-            print("Opción de ordenamiento inválida. Volviendo al menú principal.")
+            print("Opción inválida.")
+            return
+
+    mostrar_tabla_paises(lista_paises)
 
 def mostrar_estadisticas(lista_paises): #Calcula y muestra estadísticas
     if not lista_paises:
