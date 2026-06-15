@@ -40,6 +40,18 @@ def cargar_datos_csv():
         
     return lista_paises
 
+def guardar_datos_csv(lista_paises): #Guarda datos nuevos en el archivo csv
+    try:
+        with open("paises.csv", mode="w", encoding="utf-8", newline="") as archivo:
+            cabecera = ["nombre", "poblacion", "superficie", "continente"]
+            lector = csv.DictWriter(archivo, fieldnames=cabecera)
+            lector.writeheader()
+            for pais in lista_paises:
+                lector.writerow(pais)
+        print("Los cambios fueron guardados en 'paises.csv' correctamente!")
+    except Exception as e:
+        print(f"ERROR! al intentar guardar el archivo: {e}")
+        
 def mostrar_tabla_paises(lista): #Muestra tabla de paises
     if not lista:
         print("No hay países para mostrar con ese criterio.")
@@ -298,18 +310,6 @@ def mostrar_estadisticas(lista_paises):
 
     for continente, cantidad in conteo_continentes.items():
         print(f"{continente}: {cantidad}")
-        
-def guardar_datos_csv(lista_paises): #Guarda datos nuevos en el archivo csv
-    try:
-        with open("paises.csv", mode="w", encoding="utf-8", newline="") as archivo:
-            cabecera = ["nombre", "poblacion", "superficie", "continente"]
-            lector = csv.DictWriter(archivo, fieldnames=cabecera)
-            lector.writeheader()
-            for pais in lista_paises:
-                lector.writerow(pais)
-        print("Los cambios fueron guardados en 'paises.csv' correctamente!")
-    except Exception as e:
-        print(f"ERROR! al intentar guardar el archivo: {e}")
 
 def mostrar_menu():
     print("=====================================")
