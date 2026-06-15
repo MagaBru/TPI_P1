@@ -252,33 +252,80 @@ El usuario elige el orden ascendente o descendente
 
     mostrar_tabla_paises(lista_paises)
 
-def mostrar_estadisticas(lista_paises): #Calcula y muestra estadísticas
+def mostrar_estadisticas(lista_paises):
+
     if not lista_paises:
         print("No hay países cargados para calcular estadísticas.")
         return
 
+    pais_mayor_poblacion = max(
+        lista_paises,
+        key=lambda x: x["poblacion"]
+    )
+
+    pais_menor_poblacion = min(
+        lista_paises,
+        key=lambda x: x["poblacion"]
+    )
+
+    promedio_poblacion = (
+        sum(
+            p["poblacion"]
+            for p in lista_paises
+        )
+        / len(lista_paises)
+    )
+
+    promedio_superficie = (
+        sum(
+            p["superficie"]
+            for p in lista_paises
+        )
+        / len(lista_paises)
+    )
+
     print("=====================================")
-    print("   REPORTE ESTADÍSTICO DE PAÍSES     ")
+    print("   REPORTE ESTADÍSTICO DE PAÍSES")
     print("=====================================")
 
-    # 1. Calcular Población Total
-    # Sumamos la población de cada país usando una comprensión
-    poblacion_total = sum(p[1] if isinstance(p, list) else p["poblacion"] for p in lista_paises)
-    print(f"Población total mundial: {poblacion_total:,} habitantes".replace(",", "."))
+    print(
+        f"País con mayor población: "
+        f"{pais_mayor_poblacion['nombre']} "
+        f"({pais_mayor_poblacion['poblacion']})"
+    )
 
-    # 2. Calcular Promedio de Superficie
-    superficie_total = sum(p[2] if isinstance(p, list) else p["superficie"] for p in lista_paises)
-    promedio_superficie = superficie_total / len(lista_paises)
-    print(f"Superficie promedio:     {promedio_superficie:,.2f} km²".replace(",", "X").replace(".", ",").replace("X", "."))
+    print(
+        f"País con menor población: "
+        f"{pais_menor_poblacion['nombre']} "
+        f"({pais_menor_poblacion['poblacion']})"
+    )
 
-    # 3. Encontrar País con Mayor Población y Menor Superficie
-    # Usamos la función max() y min() de Python que son súper potentes
-    pais_mas_poblado = max(lista_paises, key=lambda x: x["poblacion"])
-    pais_menos_superficie = min(lista_paises, key=lambda x: x["superficie"])
+    print(
+        f"Promedio de población: "
+        f"{promedio_poblacion:.2f}"
+    )
+
+    print(
+        f"Promedio de superficie: "
+        f"{promedio_superficie:.2f} km²"
+    )
+
+    conteo_continentes = {}
+
+    for pais in lista_paises:
+
+        continente = pais["continente"]
+
+        if continente not in conteo_continentes:
+            conteo_continentes[continente] = 0
+
+        conteo_continentes[continente] += 1
 
     print("-" * 37)
-    print(f"País más poblado:        {pais_mas_poblado['nombre']} ({pais_mas_poblado['poblacion']:,} hab.)".replace(",", "."))
-    print(f"País con menos área:     {pais_menos_superficie['nombre']} ({pais_menos_superficie['superficie']:,} km²)".replace(",", "."))
+    print("Cantidad de países por continente:")
+
+    for continente, cantidad in conteo_continentes.items():
+        print(f"{continente}: {cantidad}")
 
 def mostrar_menu():
     print("=====================================")
