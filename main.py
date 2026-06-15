@@ -62,34 +62,54 @@ def mostrar_tabla_paises(lista): #Muestra tabla de paises
     for p in lista:
         print(f"{p['nombre']:<15} | {p['poblacion']:<12} | {p['superficie']:<16} | {p['continente']:<15}")
 
-def agregar_pais(lista_paises): #Ingreso de pais nuevo
+def agregar_pais(lista_paises):
+
     print("--- REGISTRAR NUEVO PAÍS ---")
+
     nombre = input("Ingrese el nombre del país: ").strip()
+
     if nombre == "":
         print("ERROR! El nombre no puede estar vacío.")
         return
-        
+
+    '''
+    CAMBIO REALIZADO:
+    Se agregó una validación para evitar países duplicados.
+    '''
+
+    for pais in lista_paises:
+        if pais["nombre"].lower() == nombre.lower():
+            print("ERROR! Ese país ya existe en el sistema.")
+            return
+
     try:
         poblacion_input = input("Ingrese la cantidad de población: ").strip()
+
         if poblacion_input == "":
             print("ERROR! La población no puede estar vacía.")
             return
+
         poblacion = int(poblacion_input)
+
     except ValueError:
         print("ERROR! Debe ingresar un número entero válido.")
         return
 
     try:
         superficie_input = input("Ingrese la superficie en km²: ").strip()
+
         if superficie_input == "":
             print("ERROR! La superficie no puede estar vacía.")
             return
+
         superficie = int(superficie_input)
+
     except ValueError:
         print("ERROR! Debe ingresar un número entero válido.")
         return
 
     continente = input("Ingrese el continente al que pertenece: ").strip()
+
     if continente == "":
         print("ERROR! El continente no puede estar vacío.")
         return
@@ -100,7 +120,9 @@ def agregar_pais(lista_paises): #Ingreso de pais nuevo
         "superficie": superficie,
         "continente": continente
     }
+
     lista_paises.append(nuevo_pais)
+
     print(f"'{nombre}' fue agregado correctamente a la lista!")
 
 def actualizar_pais(lista_paises): #Actualización de datos de paises ingresados
