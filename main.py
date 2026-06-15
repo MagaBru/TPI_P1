@@ -8,7 +8,7 @@ def cargar_datos_csv():
             
             if not lineas:
                 return lista_paises
-
+            
             for linea in lineas[1:]:
                 linea_limpia = linea.strip()
                 if not linea_limpia:
@@ -40,18 +40,6 @@ def cargar_datos_csv():
         
     return lista_paises
 
-def guardar_datos_csv(lista_paises): #Guarda datos nuevos en el archivo csv
-    try:
-        with open("paises.csv", mode="w", encoding="utf-8", newline="") as archivo:
-            cabecera = ["nombre", "poblacion", "superficie", "continente"]
-            lector = csv.DictWriter(archivo, fieldnames=cabecera)
-            lector.writeheader()
-            for pais in lista_paises:
-                lector.writerow(pais)
-        print("Los cambios fueron guardados en 'paises.csv' correctamente!")
-    except Exception as e:
-        print(f"ERROR! al intentar guardar el archivo: {e}")
-
 def mostrar_tabla_paises(lista): #Muestra tabla de paises
     if not lista:
         print("No hay países para mostrar con ese criterio.")
@@ -63,20 +51,12 @@ def mostrar_tabla_paises(lista): #Muestra tabla de paises
         print(f"{p['nombre']:<15} | {p['poblacion']:<12} | {p['superficie']:<16} | {p['continente']:<15}")
 
 def agregar_pais(lista_paises):
-
     print("--- REGISTRAR NUEVO PAÍS ---")
-
     nombre = input("Ingrese el nombre del país: ").strip()
-
     if nombre == "":
         print("ERROR! El nombre no puede estar vacío.")
         return
-
-    '''
-    CAMBIO REALIZADO:
-    Se agregó una validación para evitar países duplicados.
-    '''
-
+    #Se agregó una validación para evitar países duplicados
     for pais in lista_paises:
         if pais["nombre"].lower() == nombre.lower():
             print("ERROR! Ese país ya existe en el sistema.")
@@ -84,32 +64,25 @@ def agregar_pais(lista_paises):
 
     try:
         poblacion_input = input("Ingrese la cantidad de población: ").strip()
-
         if poblacion_input == "":
             print("ERROR! La población no puede estar vacía.")
             return
-
         poblacion = int(poblacion_input)
-
     except ValueError:
         print("ERROR! Debe ingresar un número entero válido.")
         return
 
     try:
         superficie_input = input("Ingrese la superficie en km²: ").strip()
-
         if superficie_input == "":
             print("ERROR! La superficie no puede estar vacía.")
             return
-
         superficie = int(superficie_input)
 
     except ValueError:
         print("ERROR! Debe ingresar un número entero válido.")
         return
-
     continente = input("Ingrese el continente al que pertenece: ").strip()
-
     if continente == "":
         print("ERROR! El continente no puede estar vacío.")
         return
@@ -122,7 +95,6 @@ def agregar_pais(lista_paises):
     }
 
     lista_paises.append(nuevo_pais)
-
     print(f"'{nombre}' fue agregado correctamente a la lista!")
 
 def actualizar_pais(lista_paises): #Actualización de datos de paises ingresados
@@ -326,6 +298,18 @@ def mostrar_estadisticas(lista_paises):
 
     for continente, cantidad in conteo_continentes.items():
         print(f"{continente}: {cantidad}")
+        
+def guardar_datos_csv(lista_paises): #Guarda datos nuevos en el archivo csv
+    try:
+        with open("paises.csv", mode="w", encoding="utf-8", newline="") as archivo:
+            cabecera = ["nombre", "poblacion", "superficie", "continente"]
+            lector = csv.DictWriter(archivo, fieldnames=cabecera)
+            lector.writeheader()
+            for pais in lista_paises:
+                lector.writerow(pais)
+        print("Los cambios fueron guardados en 'paises.csv' correctamente!")
+    except Exception as e:
+        print(f"ERROR! al intentar guardar el archivo: {e}")
 
 def mostrar_menu():
     print("=====================================")
